@@ -22,3 +22,8 @@
 - (del packages) conda remove [--name ENV] PACKAGE
 - (del env) conda remove --name ENV --all
 - (del conda) rm -rf ~/anaconda2
+
+**Notes**
+Installing matplotlib resulted in errno 13. The dirty workaround found was:
+- chmod a+r pkgs/ -R
+- chmod a+r bin/ -R
