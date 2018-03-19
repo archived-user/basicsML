@@ -1,6 +1,34 @@
 '''
 i think the codes are meant to be run on an IPython Notebook
 source: https://colab.research.google.com/notebooks/mlcc/first_steps_with_tensor_flow.ipynb?hl=en#scrollTo=r0eVyguIU80m
+
+from my understanding of the course so far, ML is used to train models to predict outcomes given a set of input
+- FEATURES are different attributes that make up the input data
+- LABELS are the outcomes.
+- MODELS are used to estimate the relationship between input data and outcomes.
+- How it works in a Linear Regression Model?
+    - a BATCH of input data is sampled and used to train the MODEL.
+    - the MODEL is fitted into the BATCH (of BATCH_SIZE) of sample data by minimising Mean-Squared-Error (MSE).
+    - as the MODEL is simply a line, the WEIGHT and BIAS are variables being adjusted. ( y' = Wx + B).
+    - a plot of MSE vs WEIGHT for all possible values of variables will show that the MSE converges (assume problem is convex).
+    - to get to the minimum MSE, first find the derivative of MSE wrt variables.
+    - then move the variables value by descending the gradient (by a distance of LEARNING_RATE).
+    - compute the new MSE from the model using the new variables from a new BATCH of sample.
+    - this completes 1 STEP. Repeat the training for the desired number of STEPS.
+    
+Hyperparameters of the models that can be tweaked by the programmer to improve the efficiency of the model:
+- BATCH_SIZE
+- STEPS
+- LEARNING_RATE
+    
+Heuristic for Model Tuning:
+- Training error should steadily decrease, steeply at first, and should eventually plateau as training converges.
+- If the training has not converged, try running it for longer.
+- If the training error decreases too slowly, increasing the learning rate may help it decrease faster.
+    - But sometimes the exact opposite may happen if the learning rate is too high.
+- If the training error varies wildly, try decreasing the learning rate.
+    - Lower learning rate plus larger number of steps or larger batch size is often a good combination.
+- Very small batch sizes can also cause instability. First try larger values like 100 or 1000, and decrease until you see degradation.
 '''
 
 # import necessary libraries
