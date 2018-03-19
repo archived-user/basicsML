@@ -61,4 +61,4 @@ cities.index
 cities.reindex([2, 0, 1])
 
 #reindexing data randomly
-ities.reindex(np.random.permutation(cities.index))
+cities.reindex(np.random.permutation(cities.index))
