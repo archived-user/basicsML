@@ -8,13 +8,27 @@ from my understanding of the course so far, ML is used to train models to predic
 - MODELS are used to estimate the relationship between input data and outcomes.
 - How it works in a Linear Regression Model?
     - a BATCH of input data is sampled and used to train the MODEL.
-    - the MODEL is fitted into the BATCH (of BATCH_SIZE) of sample data by minimising Mean-Squared-Error (MSE).
+    - the MODEL is fitted into the BATCH (of BATCH_SIZE) of sample data.
     - as the MODEL is simply a line, the WEIGHT and BIAS are variables being adjusted. ( y' = Wx + B).
-    - a plot of MSE vs WEIGHT for all possible values of variables will show that the MSE converges (assume problem is convex).
-    - to get to the minimum MSE, first find the derivative of MSE wrt variables.
-    - then move the variables value by descending the gradient (by a distance of LEARNING_RATE).
-    - compute the new MSE from the model using the new variables from a new BATCH of sample.
+    - when training the MODEL, the variables first start off with random values, and are iteratively adjusted to minimise LOSS.
+        - (in this study we use Mean-Squared-Errors (MSE) as the LOSS function).
+    - in an ideal scenario where all data can be computed, a plot of LOSS curve (LOSS vs all possible values of the variables) will show that the LOSS converges (assume problem is convex).
+    - our objective is to get a MODEL with minimum LOSS, (minimum point of convex graph).
+    - first we find the gradient of LOSS curve at the point of current iteration's variables values.
+        - (as variables form a multi-dimentional vector, the gradient is also a vector of partial derivatives of each variables).
+    - then we move the variables value by descending the gradient.
+        - (distance moved in the direction of negative gradient = magnitude of gradient * LEARNING_RATE).
+        - LEARNING RATE is also known as STEP_SIZE.
+    - compute the new LOSS from the model using the new variables from a new BATCH of sample.
     - this completes 1 STEP. Repeat the training for the desired number of STEPS.
+    - the final MODEL is expected to have minimised LOSS to a fair extent.
+
+Ideally the BATCH_SIZE used for training should be the entire population of data instead of a sample.
+But this is not computationally possible.
+    - Stochastic Gradient Descent (SGD): Uses a BATCH_SIZE of 1 for each iteration of training.
+        - Very efficient in terms of computation but may not produce a good model.
+    - Mini-batch Stochastic Gradient Descent (mini-batch SGD): Uses a BATCH_SIZE between 10 and 1000 typically.
+        - reduced amount of noise as compared to SGD and is still relatively efficient.
     
 Hyperparameters of the models that can be tweaked by the programmer to improve the efficiency of the model:
 - BATCH_SIZE
